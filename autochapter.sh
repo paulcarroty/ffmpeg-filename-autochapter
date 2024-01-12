@@ -10,7 +10,7 @@ for FILE in *.{mp3,m4a,ogg,aac,opus,mp4,mkv,avi,webm};
     [ -e "$FILE" ] || continue
     DURATION="$(ffprobe -v quiet -print_format compact=print_section=0:nokey=1:escape=csv -show_entries format=duration "$FILE")";
     DURATION="$(echo $DURATION | xargs printf %.0f)"
-    FILENAME="$(basename -- "$FILE")"
+    FILENAME="${FILE%%.*}"
     END=$[$END + $DURATION];
     START=$[$END - $DURATION];
     
