@@ -32,6 +32,6 @@ title=02_Chapter Two
 Then concat files and write chapters:
 
 ```
-ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" ./*.ogg) -c copy output.ogg
+ffmpeg -safe 0 -f concat -i <(for f in *.ogg; do echo "file '$PWD/$f'"; done) -c copy output.ogg
 ffmpeg -i output.ogg -i FFMETADATAFILE -map_metadata 1 -codec copy output2.ogg
 ```
